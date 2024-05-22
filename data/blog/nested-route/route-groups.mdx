@@ -1,0 +1,76 @@
+---
+title: Route Groups
+date: '2024-05-22'
+tags: ['nextjs', 'code', 'framework','route-groups']
+draft: false
+summary: The article explains how to use Route Groups in Next.js to organize your application's pages. This lets you create different layouts for different sections of your website, making your code easier to manage and maintain.
+---
+
+## What are Route Groups?
+
+Route Groups are a powerful feature in Next.js that allows you to organize your application's pages and 
+apply different layouts to specific sections. This helps you maintain a clean and modular codebase, especially for larger projects.
+
+## 1. Creating Route Groups
+
+Imagine folders in your project directory. Route Groups are created by placing related pages 
+inside a folder whose name is enclosed in parentheses (). For example:
+```
+app
+  about
+    page.js
+  (marketing)  // This is a Route Group
+    blog
+      page.js
+    contact
+      page.js
+  (dashboard)  // Another Route Group
+    settings
+      page.js
+    profile
+      page.js
+```
+
+Here, we have three groups: about, marketing, and dashboard
+
+## 2. Applying Layouts to Route Groups
+
+Within each Route Group, you can define a layout.js file. This file specifies the layout that will be applied to all pages within that group.
+
+```
+app
+  about
+    page.js
+  (marketing)
+    layout.js  // Defines layout for blog and contact
+    blog
+      page.js
+    contact
+      page.js
+  (dashboard)
+    layout.js  // Defines layout for settings and profile
+    settings
+      page.js
+    profile
+      page.js
+```
+
+## 3. Using Layouts
+
+Inside `layout.js`, you can define a React component that wraps around the `children` prop. 
+This prop will contain the content of the individual pages in the group.
+
+```
+// app/(marketing)/layout.js
+import React from 'react';
+
+const MarketingLayout = ({ children }) => (
+  <div className="marketing-layout">
+    <header>Marketing Header</header>
+    <main>{children}</main>
+    <footer>Marketing Footer</footer>
+  </div>
+);
+
+export default MarketingLayout;
+```

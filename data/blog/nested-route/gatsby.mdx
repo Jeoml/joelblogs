@@ -1,0 +1,56 @@
+---
+title: Gatsby: Introduction and Installation
+date: '2024-05-23'
+tags: ['Gatsby', 'code', 'framework', 'cli']
+draft: false
+summary: The article explains how to use Route Groups in Next.js to organize your application's pages. This lets you create different layouts for different sections of your website, making your code easier to manage and maintain.
+---
+## What is Gatsby?
+
+Gatsby is an open-source framework built on top of React and Node.js that 
+simplifies the process of creating modern websites and web applications.
+It pre-renders your website for speed, security, and scalability, while 
+still allowing for dynamic elements.
+
+## Installing Gatsby
+
+Gatsby can be installed in your computer by running the following 
+code in the Windows Powershell (run as administrator)
+`npm install -g gatsby-cli`
+(-g here stands for global installation)
+
+Upon doing that you might get this output
+```
+PS C:\Windows\system32> npm install -g gatsby-cli
+changed 318 packages in 5s
+63 packages are looking for funding
+run `npm fund for details
+```
+
+After this, enter `gatsby --version` to verify whether gatsby CLI has been installed on your computer or not.
+
+Upon doing that you might get this output
+```
+PS C:\Windows\system32> gatsby --version
+Gatsby collects anonymous usage analytics
+to help improve Gatsby for all users.
+If you'd like to opt-out, you can use `gatsby telemetry --disable` To learn more, checkout https://gatsby.dev/telemetry
+Gatsby CLI version: 5.13.3
+```
+However, there might be a case that you might be getting this result instead of the above one
+```
+PS C:\Windows\system32> gatsby --version
+gatsby File C:\Users\joel1\AppData\Roaming\npm\gatsby.ps1 cannot be loaded because running scripts is disabled on this system. For more information, see about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170. At line:1 char:1
++gatsby --version
++ CategoryInfo
+: SecurityError: (:) [], PSSecurityException
++ FullyQualifiedErrorId : UnauthorizedAccess
+```
+In that case, follow these steps in the powershell:
+    1. Enter `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser` in the powershell.
+    2. On entering that you will be prompted to confirm the change. Type Y and press Enter.
+    3. To verify the change enter `Get-ExecutionPolicy -List`.
+
+The above changes should ensure that gatsby CLI is ready to run on your PC. 
+
+Enter `gatsby --version` to verify the installation.
