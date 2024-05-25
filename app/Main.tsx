@@ -84,7 +84,7 @@ export default function Home({ posts }) {
       {siteMetadata.newsletter?.provider && (
         <div className="flex items-center justify-center pt-4">
           <p>Newsletter will be available soon.</p>
-          <NewsletterForm />
+          {/* <NewsletterForm /> */}
         </div>
       )}
     </>
