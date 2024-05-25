@@ -55,3 +55,4 @@ export const SearchProvider = ({ children }) => {
     </KBarSearchProvider>
   )
 }
+{% endraw %}
