@@ -1,7 +1,7 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Joel\'s blog',
-  author: 'Joel Thaduri',
+  author: 'Tails Azimuth',
   headerTitle: 'DogeBlog',
   description: 'A blog created with Next.js and Tailwind.css',
   language: 'en-us',
