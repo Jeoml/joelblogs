@@ -6,6 +6,7 @@ Add a `SearchProvider` component such as the one shown below and use it in place
 
 `onSearchDocumentsLoad` is a callback function that is called when the documents specified by `searchDocumentsPath` are loaded. Set `searchDocumentsPath` to `false` to disable the dynamically loaded search feature.
 
+{% raw %}
 ```tsx
 'use client'
 
