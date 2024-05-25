@@ -26,7 +26,7 @@ const projectsData: Project[] = [
     title: 'Projects are yet to be added',
     description: `Website under construction. Do not click learn more.`,
     imgSrc: '/static/images/doge-removebg.png',
-    href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+    href: 'https://youtu.be/xvFZjo5PgG0?si=oOTwrE-Px4219JTp',
   },
 ]
 
