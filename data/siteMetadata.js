@@ -1,6 +1,6 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Next.js Blog',
+  title: 'Joel\'s blog',
   author: 'Tails Azimuth',
   headerTitle: 'DogeBlog',
   description: 'A blog created with Next.js and Tailwind.css',
@@ -9,7 +9,7 @@ const siteMetadata = {
   siteUrl: 'https://tailwind-nextjs-starter-blog.vercel.app',
   siteRepo: 'https://github.com/timlrx/tailwind-nextjs-starter-blog',
   siteLogo: '.\public\static\images\doge-removebg.png',
-  socialBanner: '/static/images/twitter-card.png',
+  socialBanner: '/static/images/avatar.jpg',
   mastodon: 'https://mastodon.social/@mastodonuser',
   email: 'joel19thaduri@gmail.com',
   github: 'https://github.com',
