@@ -18,11 +18,9 @@ export default function Footer() {
           <SocialIcon kind="threads" href={siteMetadata.threads} size={6} />
         </div>
         <div className="mb-2 flex space-x-2 text-sm text-gray-500 dark:text-gray-400">
-          <div> Nextjs theme provided by {siteMetadata.author}</div>
-          <div>{` • `}</div>
           <div>{`© ${new Date().getFullYear()}`}</div>
           <div>{` • `}</div>
-          <div>Webmaster : Joel Thaduri</div>
+          <div>Author : Joel Thaduri</div>
           {/* <Link href="/">{siteMetadata.title}</Link> */}
         </div>
         {/* <div className="mb-8 text-sm text-gray-500 dark:text-gray-400">
