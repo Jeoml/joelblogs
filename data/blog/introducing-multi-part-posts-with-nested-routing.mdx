@@ -1,0 +1,87 @@
+---
+title: Building Your First Website with the Gemini API: A Step-by-Step Tutorial
+date: '2021-05-02'
+tags: ['multi-author', 'next-js', 'feature']
+draft: false
+---
+### Introduction
+Gemini is a new internet protocol designed for the distributed web. It's lightweight, secure, and privacy-focused. In this tutorial, we'll walk through building your first website using the Gemini API. By the end, you'll have a simple Gemini-powered website up and running.
+
+### Prerequisites
+Before we begin, ensure you have the following:
+- Basic knowledge of HTML and web development.
+- Python installed on your system.
+- A text editor (e.g., VS Code, Sublime Text).
+
+### Step 1: Setting Up Your Environment
+First, let's set up a project directory for our website.
+
+1. Create a new directory for your project:
+   ```bash
+   mkdir my_gemini_website
+   cd my_gemini_website
+   ```
+
+2. Create a Python virtual environment:
+   ```bash
+   python -m venv venv
+   ```
+
+3. Activate the virtual environment:
+   - On Windows:
+     ```bash
+     venv\Scripts\activate
+     ```
+   - On macOS/Linux:
+     ```bash
+     source venv/bin/activate
+     ```
+
+### Step 2: Install the Gemini Server Library
+Next, let's install the `txgemini` library, a Python implementation of the Gemini protocol.
+
+```bash
+pip install txgemini
+```
+
+### Step 3: Create Your Gemini Website
+Now, let's create a simple Gemini website.
+
+1. Create an `index.gmi` file in your project directory. This will be the homepage of your website.
+   ```gmi
+   # Welcome to My Gemini Website
+
+   Hello, world! This is my first Gemini website.
+   ```
+
+2. Create a Python script to serve your Gemini website. Let's name it `server.py`.
+   ```python
+   from twisted.internet import reactor
+   from txgemini.server import GeminiServer
+
+   server = GeminiServer()
+
+   @server.route("/")
+   def index():
+       return open("index.gmi").read()
+
+   reactor.listenTCP(1965, server)
+   reactor.run()
+   ```
+
+### Step 4: Run Your Gemini Server
+You're now ready to launch your Gemini server.
+
+```bash
+python server.py
+```
+
+### Step 5: Testing Your Gemini Website
+Open your Gemini client (e.g., Lagrange, Kristall), and navigate to `gemini://localhost` to view your website.
+
+### Conclusion
+Congratulations! You've successfully built and served your first Gemini website using the Gemini API. From here, you can expand your website by adding more pages, styling with CSS, and exploring additional features of the Gemini protocol.
+
+### Additional Resources
+- [Gemini Protocol Specification](https://gemini.circumlunar.space/docs/specification.html)
+- [txgemini Documentation](https://github.com/midipix/txgemini)
