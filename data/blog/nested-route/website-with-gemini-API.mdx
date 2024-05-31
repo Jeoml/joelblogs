@@ -1,33 +1,30 @@
 ---
-title: Building Your First Website with the Gemini API- A Step-by-Step Tutorial
+title: Building a website integrated with the Gemini API- A Step-by-Step Tutorial
 date: '2024-05-31'
-tags: ['multi-author', 'next-js', 'feature']
+tags: ['Gemini-API', 'Python', 'Flask','requests library','requests','pip']
 draft: false
 ---
-### Introduction
-Gemini is a new internet protocol designed for the distributed web. It's lightweight, secure, and privacy-focused. In this tutorial, we'll walk through building your first website using the Gemini API. By the end, you'll have a simple Gemini-powered website up and running.
+### Step-by-Step Tutorial
 
-### Prerequisites
-Before we begin, ensure you have the following:
-- Basic knowledge of HTML and web development.
+#### Prerequisites
+Before starting, make sure you have the following:
+- Basic knowledge of Python and web development.
 - Python installed on your system.
-- A text editor (e.g., VS Code, Sublime Text).
+- `Flask` and `requests` libraries installed (you can install them using pip).
 
-### Step 1: Setting Up Your Environment
-First, let's set up a project directory for our website.
-
-1. Create a new directory for your project:
+#### Step 1: Setting Up Your Environment
+1. **Create a project directory:**
    ```bash
-   mkdir my_gemini_website
-   cd my_gemini_website
+   mkdir gemini_query_app
+   cd gemini_query_app
    ```
 
-2. Create a Python virtual environment:
+2. **Create a Python virtual environment:**
    ```bash
    python -m venv venv
    ```
 
-3. Activate the virtual environment:
+3. **Activate the virtual environment:**
    - On Windows:
      ```bash
      venv\Scripts\activate
@@ -37,51 +34,104 @@ First, let's set up a project directory for our website.
      source venv/bin/activate
      ```
 
-### Step 2: Install the Gemini Server Library
-Next, let's install the `txgemini` library, a Python implementation of the Gemini protocol.
-
-```bash
-pip install txgemini
-```
-
-### Step 3: Create Your Gemini Website
-Now, let's create a simple Gemini website.
-
-1. Create an `index.gmi` file in your project directory. This will be the homepage of your website.
-   ```gmi
-   # Welcome to My Gemini Website
-
-   Hello, world! This is my first Gemini website.
+4. **Install the required libraries:**
+   ```bash
+   pip install Flask requests
    ```
 
-2. Create a Python script to serve your Gemini website. Let's name it `server.py`.
+#### Step 2: Create the Flask Application
+1. **Create the Flask app file:**
+   Create a file named `app.py` in your project directory.
+
    ```python
-   from twisted.internet import reactor
-   from txgemini.server import GeminiServer
+   from flask import Flask, request, jsonify, render_template
+   import requests
 
-   server = GeminiServer()
+   app = Flask(__name__)
 
-   @server.route("/")
-   def index():
-       return open("index.gmi").read()
+   GEMINI_API_URL = 'https://example-gemini-api.com/query'  # Replace with the actual Gemini API endpoint. If you do not know how to do it then go to the bottom section where it is covered.
 
-   reactor.listenTCP(1965, server)
-   reactor.run()
+   @app.route('/')
+   def home():
+       return render_template('index.html')
+
+   @app.route('/query', methods=['POST'])
+   def query():
+       user_query = request.form.get('query')
+       response = requests.post(GEMINI_API_URL, json={'query': user_query})
+       result = response.json()
+       return jsonify(result)
+
+   if __name__ == '__main__':
+       app.run(debug=True)
    ```
 
-### Step 4: Run Your Gemini Server
-You're now ready to launch your Gemini server.
+2. **Create a basic HTML template:**
+   Create a folder named `templates` in your project directory and inside it, create a file named `index.html`.
 
-```bash
-python server.py
-```
+   ```html
+   <!doctype html>
+   <html lang="en">
+     <head>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+       <title>Gemini Query App</title>
+       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+     </head>
+     <body>
+       <div class="container">
+         <h1 class="mt-5">Gemini Query App</h1>
+         <form id="query-form" class="mt-3">
+           <div class="form-group">
+             <label for="query">Enter your query:</label>
+             <input type="text" class="form-control" id="query" name="query" required>
+           </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
+         <div class="mt-3">
+           <h2>Response:</h2>
+           <pre id="response"></pre>
+         </div>
+       </div>
+       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+       <script>
+         $('#query-form').on('submit', function(event) {
+           event.preventDefault();
+           const query = $('#query').val();
+           $.ajax({
+             url: '/query',
+             method: 'POST',
+             data: { query: query },
+             success: function(response) {
+               $('#response').text(JSON.stringify(response, null, 2));
+             },
+             error: function() {
+               $('#response').text('An error occurred.');
+             }
+           });
+         });
+       </script>
+     </body>
+   </html>
+   ```
 
-### Step 5: Testing Your Gemini Website
-Open your Gemini client (e.g., Lagrange, Kristall), and navigate to `gemini://localhost` to view your website.
+#### Step 3: Running Your Application
+1. **Run the Flask app:**
+   ```bash
+   python app.py
+   ```
+
+2. **Open your browser and navigate to:**
+   ```
+   http://127.0.0.1:5000/
+   ```
+
+   You should see a form where you can enter your query.
+
+3. **Test the application:**
+   - Enter a query in the form.
+   - Submit the form.
+   - See the response from the Gemini API displayed on the page.
 
 ### Conclusion
-Congratulations! You've successfully built and served your first Gemini website using the Gemini API. From here, you can expand your website by adding more pages, styling with CSS, and exploring additional features of the Gemini protocol.
-
-### Additional Resources
-- [Gemini Protocol Specification](https://gemini.circumlunar.space/docs/specification.html)
-- [txgemini Documentation](https://github.com/midipix/txgemini)
+You've successfully created a web application that takes user queries, sends them to a Gemini API, and displays the responses. This is a basic example, but you can extend it by adding more features, such as error handling, styling, and additional functionality.
