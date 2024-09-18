@@ -1,8 +1,8 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   title: 'Joel\'s blog',
-  author: 'Tails Azimuth',
-  headerTitle: 'DumbDev',
+  author: 'Joel Thaduri',
+  headerTitle: 'Joel\'s blog',
   description: 'A blog created with Next.js and Tailwind.css',
   language: 'en-us',
   theme: 'system', // system, dark or light
